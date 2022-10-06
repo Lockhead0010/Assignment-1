@@ -29,20 +29,17 @@ func NewBlock(transaction string, Nonce int, PreviousHash string) *Block {
 
 func (b *Block) CalculateHash(stringToHash string) {
 
-	sum := sha256.Sum256([]byte(stringToHash))
-	b.BlockHash = hex.EncodeToString(sum[:])
+	str := sha256.Sum256([]byte(stringToHash))
+	b.BlockHash = hex.EncodeToString(str[:])
 
 }
 
 func (b *Chain) ListBlocks() {
-	//A method to print all the blocks in a nice format showing block data such
-	//as transaction, Nonce, previous hash, current block hash
 
 	for i := range b.ChainBlock {
 		fmt.Printf(" Tranaction is : %s \n", b.ChainBlock[i].Tranaction)
 		fmt.Printf(" Nonce is : %d  \n ", (b.ChainBlock[i].Nonce))
 		fmt.Println("\n Previous Hash is :    ", (b.ChainBlock[i].PreviousHash))
-		// fmt.Printf("%s :\n ",b.ChainBlock[i].BlockHash)
 		fmt.Println("\n  BlockHash is :  ", b.ChainBlock[i].BlockHash)
 
 	}
